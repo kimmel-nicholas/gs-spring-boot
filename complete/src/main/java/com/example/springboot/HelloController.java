@@ -32,6 +32,13 @@ public class HelloController {
 		model.addAttribute("id", id);
 		return "xkcdSpecific";
 	}
+	public String nasapic(@RequestParam(name="id", required=false) String id, Model model) {
+		// if(id == null){
+		// 	id = "200";
+		// }
+		// model.addAttribute("id", id);
+		return "nasaPictureOfTheDay";
+	}
 
 	//Path variable method
 	// @GetMapping("/xkcdSpec/{id}")
