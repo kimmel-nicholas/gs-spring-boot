@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.ui.Model;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;  
 
 @Controller
 public class HelloController {
@@ -32,12 +34,19 @@ public class HelloController {
 		model.addAttribute("id", id);
 		return "xkcdSpecific";
 	}
-	public String nasapic(@RequestParam(name="id", required=false) String id, Model model) {
-		// if(id == null){
-		// 	id = "200";
-		// }
-		// model.addAttribute("id", id);
+	@GetMapping("/nasaPOD")
+	public String nasaPic(@RequestParam(name="date", required=false) String date, Model model) {
+		if(date == null){
+			date = todaysDate;
+		}
+		model.addAttribute("date", date);
 		return "nasaPictureOfTheDay";
+	}
+	public String todaysDate(){
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+   		LocalDateTime now = LocalDateTime.now();
+		String date = now.format(dtf);
+		return date;
 	}
 
 	//Path variable method

@@ -29,8 +29,8 @@
         <!-- Page content-->
         <div class="container">
             <div class="text-center mt-5">
-                <h1>NASA Picture of the Day - don't look at this yet</h1>
-                <div class="comic">
+                <h1>NASA Picture of the Day</h1>
+                <div class="pod">
                     <div class="spinner-grow" role="status">
                         <span class="sr-only"></span>
                     </div>
@@ -44,12 +44,12 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script th:inline = "javascript">
             $.ajax({
-                url: 'https://xkcd.com/' + [[${id}]] + '/info.0.json',
+                url: 'https://api.nasa.gov/planetary/apod?api_key=0J1Mtq3c4lubPbF9X2dMPxD73lMfXAYEMvL33jgJ&' + [[${date}]] +'',
                 type: "GET",
                 datatype: "json",
                 success: function(data){
-                    $('.comic').html(
-                        '<p class = "lead">' + data.safe_title + ' <br>posted on ' + data.month + ' - ' + data.day + ' - ' + data.year + '</p><img src="'+ data.img +'" alt="' + data.alt + '" width="99%">'
+                    $('.pod').html(
+                        '<p class = "lead">' + data.title + ' <br>posted on ' + data.date + '</p><img src="'+ data.url +'"width="99%">'
                     )
                 },
                 error: function(data){
