@@ -37,7 +37,7 @@ public class HelloController {
 	@GetMapping("/nasaPOD")
 	public String nasaPic(@RequestParam(name="date", required=false) String date, Model model) {
 		if(date == null){
-			date = todaysDate;
+			date = todaysDate();
 		}
 		model.addAttribute("date", date);
 		return "nasaPictureOfTheDay";
